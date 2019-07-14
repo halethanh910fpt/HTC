@@ -1,0 +1,46 @@
+-- create database "HTC"
+create database HTC character set utf8mb4 collate utf8mb4_unicode_ci;
+
+-- create table "Manufacturer"
+create table Manufacturer
+(
+	ID_Manufacturer   int auto_increment not null primary key,
+	Name_Manufacturer varchar(255) null,
+	Logo              varchar(255) null
+);
+
+-- create table "Product"
+create table Product
+(
+	ID_Product	int auto_increment not null primary key,
+	Name_Product	varchar(255) not null,
+	Description	varchar(255) not null,
+	Price		bigint not null,
+	Inventory	int not null,
+	Image		varchar(255) not null,
+	Qty_BestSell	int not null,
+	Qty_BestView	int not null,
+	Qty_NewProduct	bit not null,
+	Date_Newproduct	datetime not null,
+	Feature		longtext not null,
+	Display		longtext not null,
+	OS		longtext not null,
+	Camera		longtext not null,
+	CPU		longtext not null,
+	Memory		longtext not null,
+	Connection	longtext not null,
+	Battery		longtext not null,
+	ID_Manufacturer	int not null
+);
+
+-- create table "Account"
+create table Account
+(
+	ID_Account	int auto_increment not null primary key,
+	Username	varchar(255) not null,
+	Password	varchar(255) not null,
+	Authority	varchar(30) not null
+);
+
+-- create relationships
+alter table Product add constraint fk_Product_ProductGroup foreign key (ID_Manufacturer) references Manufacturer (ID_Manufacturer);
